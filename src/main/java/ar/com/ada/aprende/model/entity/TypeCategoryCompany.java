@@ -10,7 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity(name = "CompanyTypeCategory")
+@Entity(name = "TypeCategoryCompany")
 public class TypeCategoryCompany {
 
     @Id
