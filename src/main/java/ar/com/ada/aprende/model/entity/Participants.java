@@ -28,6 +28,6 @@ public class Participants {
     @Column(nullable = false, columnDefinition = "DATETIME")
     private LocalDate birthday;
 
-    @Column(nullable = false, columnDefinition = "DATETIME")
-    private LocalDate address;
+    @Column(nullable = false, length = 200)
+    private String address;
 }

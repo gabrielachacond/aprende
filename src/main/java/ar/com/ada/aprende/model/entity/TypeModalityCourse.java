@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @Entity (name = "TypeModality")
-public class TypeModality {
+public class TypeModalityCourse {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;

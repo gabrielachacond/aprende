@@ -36,5 +36,8 @@ public class Company {
     @Column(nullable = false, length = 20)
     private Integer contactNumber;
 
+    @ManyToOne
+    @JoinColumn(name = "TypeCategoryCompany_id", nullable = true)
+    private TypeCategoryCompany typeCategoryCompany;
 
 }
