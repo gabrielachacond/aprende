@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -45,5 +46,11 @@ public class Course {
     @ManyToOne
     @JoinColumn(name = "Company_id", nullable = true)
     private Company company;
-    
+
+    @OneToMany(mappedBy = "Course")
+    private List<CourseHasParticipants> courseHasParticipants;
+
+
+
+
 }

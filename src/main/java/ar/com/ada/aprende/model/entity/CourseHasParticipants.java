@@ -17,8 +17,28 @@ public class CourseHasParticipants {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
+    @Column(nullable = false, length = 100)
+    private Boolean courseHasFinish;
+
+    @Column(nullable = false, length = 100)
+    private Boolean isScholaship;
+
+    @Column(nullable = false, length = 100)
+    private Boolean isApproved;
+
+
     @OneToMany(mappedBy = "CourseHasParticipants")
     private List<Course> courses;
+
+    @ManyToOne
+    @JoinColumn(name = "Course_id", nullable = true)
+    private Course course;
+
+    @ManyToOne
+    @JoinColumn(name = "Participants_id", nullable = true)
+    private Participants participants;
+
+
 
 }
 

@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -39,5 +40,11 @@ public class Company {
     @ManyToOne
     @JoinColumn(name = "TypeCategoryCompany_id", nullable = true)
     private TypeCategoryCompany typeCategoryCompany;
+
+    @OneToMany(mappedBy = "Company")
+    private List<CompanyRepresentative> companyRepresentatives;
+
+    @OneToMany(mappedBy = "Company")
+    private List<Course> courses;
 
 }
