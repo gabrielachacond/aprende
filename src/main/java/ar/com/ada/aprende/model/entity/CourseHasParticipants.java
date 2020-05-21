@@ -27,9 +27,9 @@ public class CourseHasParticipants {
     private Boolean isApproved;
 
 
-    @OneToMany(mappedBy = "CourseHasParticipants")
+    @OneToMany(mappedBy = "courseHasParticipants")
     private List<Course> courses;
-
+    //todo:luego se hace esta relacion
     @ManyToOne
     @JoinColumn(name = "Course_id", nullable = true)
     private Course course;

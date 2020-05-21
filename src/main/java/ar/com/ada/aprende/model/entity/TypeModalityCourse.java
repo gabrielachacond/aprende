@@ -19,7 +19,7 @@ public class TypeModalityCourse {
     @Column(nullable = false, length = 100)
     private String modality;
 
-    @OneToMany(mappedBy = "TypeModalityCourse")
+    @OneToMany(mappedBy = "typeModalityCourse")
     private List<Course> courses;
 
 }

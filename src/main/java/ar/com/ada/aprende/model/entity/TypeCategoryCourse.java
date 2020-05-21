@@ -21,6 +21,6 @@ public class TypeCategoryCourse {
     @Column(nullable = false, length = 100)
     private String category;
 
-    @OneToMany(mappedBy = "TypeCategoryCourse")
+    @OneToMany(mappedBy = "typeCategoryCourse")
     private List<Course> courses;
 }

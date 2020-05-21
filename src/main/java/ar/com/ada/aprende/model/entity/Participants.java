@@ -32,9 +32,9 @@ public class Participants {
     @Column(nullable = false, length = 200)
     private String address;
 
-    @OneToMany(mappedBy = "Participants")
+    @OneToMany(mappedBy = "participants")
     private List<CourseHasParticipants> courseHasParticipants;
 
-    @OneToMany(mappedBy = "Participants")
+    @OneToMany(mappedBy = "participants")
     private List<SocioEconomyStudy> socioEconomyStudies;
 }

@@ -46,8 +46,8 @@ public class Course {
     @ManyToOne
     @JoinColumn(name = "Company_id", nullable = true)
     private Company company;
-
-    @OneToMany(mappedBy = "Course")
+//todo:luego se hace esta relacion
+    @OneToMany(mappedBy = "course")
     private List<CourseHasParticipants> courseHasParticipants;
 
 

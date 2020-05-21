@@ -41,10 +41,10 @@ public class Company {
     @JoinColumn(name = "TypeCategoryCompany_id", nullable = true)
     private TypeCategoryCompany typeCategoryCompany;
 
-    @OneToMany(mappedBy = "Company")
+    @OneToMany(mappedBy = "company")
     private List<CompanyRepresentative> companyRepresentatives;
 
-    @OneToMany(mappedBy = "Company")
+    @OneToMany(mappedBy = "company")
     private List<Course> courses;
 
 }
