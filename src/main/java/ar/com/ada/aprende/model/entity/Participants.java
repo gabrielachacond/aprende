@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -36,5 +37,5 @@ public class Participants {
     private List<CourseHasParticipants> courseHasParticipants;
 
     @OneToMany(mappedBy = "participants")
-    private List<SocioEconomyStudy> socioEconomyStudies;
+    private Set<SocioEconomyStudy> socioEconomyStudies;
 }

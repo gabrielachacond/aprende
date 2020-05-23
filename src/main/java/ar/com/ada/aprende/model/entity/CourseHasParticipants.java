@@ -6,16 +6,23 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity(name = "CourseHasParticipants")
-public class CourseHasParticipants {
+public class CourseHasParticipants implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
+    @ManyToOne
+    @JoinColumn(name = "Course_id", nullable = true)
+    private Course course;
+
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "Participants_id", nullable = true)
+    private Participants participants;
 
     @Column(nullable = false, length = 100)
     private Boolean courseHasFinish;
@@ -25,20 +32,6 @@ public class CourseHasParticipants {
 
     @Column(nullable = false, length = 100)
     private Boolean isApproved;
-
-
-    @OneToMany(mappedBy = "courseHasParticipants")
-    private List<Course> courses;
-    //todo:luego se hace esta relacion
-    @ManyToOne
-    @JoinColumn(name = "Course_id", nullable = true)
-    private Course course;
-
-    @ManyToOne
-    @JoinColumn(name = "Participants_id", nullable = true)
-    private Participants participants;
-
-
 
 }
 
