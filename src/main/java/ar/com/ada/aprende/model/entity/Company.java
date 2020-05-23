@@ -38,7 +38,7 @@ public class Company {
     private Integer contactNumber;
 
     @ManyToOne
-    @JoinColumn(name = "TypeCategoryCompany_id", nullable = true)
+    @JoinColumn(name = "TypeCategoryCompany_id")
     private TypeCategoryCompany typeCategoryCompany;
 
     @OneToMany(mappedBy = "company")

@@ -36,6 +36,6 @@ public class Participants {
     @OneToMany(mappedBy = "participants")
     private List<CourseHasParticipants> courseHasParticipants;
 
-    @OneToMany(mappedBy = "participants")
-    private Set<SocioEconomyStudy> socioEconomyStudies;
+    @OneToOne(mappedBy = "participants")
+    private SocioEconomyStudy socioEconomyStudy;
 }

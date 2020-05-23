@@ -16,12 +16,12 @@ import java.util.List;
 public class CourseHasParticipants implements Serializable {
     @Id
     @ManyToOne
-    @JoinColumn(name = "Course_id", nullable = true)
+    @JoinColumn(name = "Course_id")
     private Course course;
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "Participants_id", nullable = true)
+    @JoinColumn(name = "Participants_id")
     private Participants participants;
 
     @Column(nullable = false, length = 100)

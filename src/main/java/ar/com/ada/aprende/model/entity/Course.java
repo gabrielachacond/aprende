@@ -36,15 +36,15 @@ public class Course {
     private Integer placesToScholarship;
 
     @ManyToOne
-    @JoinColumn(name = "TypeCategoryCourse_id", nullable = true)
-    private TypeCategoryCompany typeCategoryCompany;
+    @JoinColumn(name = "TypeCategoryCourse_id")
+    private TypeCategoryCourse typeCategoryCourse;
 
     @ManyToOne
-    @JoinColumn(name = "TypeModalityCourse_id", nullable = true)
+    @JoinColumn(name = "TypeModalityCourse_id")
     private TypeModalityCourse typeModalityCourse;
 
     @ManyToOne
-    @JoinColumn(name = "Company_id", nullable = true)
+    @JoinColumn(name = "Company_id")
     private Company company;
 
 

@@ -32,8 +32,8 @@ public class SocioEconomyStudy {
     @Column(nullable = false, length = 100)
     private Integer howManyFamily;
 
-    @ManyToOne
-    @JoinColumn(name = "Participants_id", nullable = true)
+    @OneToOne
+    @JoinColumn(name = "Participants_id", referencedColumnName = "id")
     private Participants participants;
 
 
