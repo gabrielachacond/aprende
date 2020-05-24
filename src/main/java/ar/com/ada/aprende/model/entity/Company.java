@@ -47,4 +47,8 @@ public class Company {
     @OneToMany(mappedBy = "company")
     private List<Course> courses;
 
+    public Company(Long id) {
+        this.id = id;
+    }
+
 }
