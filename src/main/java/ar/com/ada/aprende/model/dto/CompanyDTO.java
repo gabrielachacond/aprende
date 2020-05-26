@@ -13,6 +13,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.Year;
 
 @Getter
 @Setter
@@ -25,8 +26,8 @@ public class CompanyDTO implements Serializable {
     @NotBlank(message = "nameCompany is required")
     private String nameCompany;
 
-    @NotBlank(message = "cuil is required")
-    private Integer cuil;
+     @NotNull (message = "cuil is required")
+    private Long cuil;
 
     @NotBlank(message = "typeCompany is required")
     private String typeCompany;
@@ -36,10 +37,9 @@ public class CompanyDTO implements Serializable {
 
     @NotNull(message = "fundationYear is required")
     @Past(message = "fundationYear must be past date")
-    @JsonFormat(pattern = "YYYY")
-    private LocalDate fundationYear;
+    private Year fundationYear;
 
-    @NotBlank(message = "contactNumber is required")
+    @NotNull(message = "contactNumber is required")
     private Integer contactNumber;
 
     @Valid
