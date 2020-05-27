@@ -29,7 +29,7 @@ public class Company {
     @Column(nullable = false, length = 200)
     private String addressCompany;
 
-    @Column(nullable = false, columnDefinition = "YEAR")
+    @Column(nullable = false)
     private Year fundationYear;
 
     @Column(nullable = false, length = 20)

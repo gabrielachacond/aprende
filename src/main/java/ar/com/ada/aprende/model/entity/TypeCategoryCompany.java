@@ -23,5 +23,15 @@ public class TypeCategoryCompany {
     @OneToMany(mappedBy = "typeCategoryCompany")
     private List<Company> companies;
 
+
+    public TypeCategoryCompany setId(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public TypeCategoryCompany setCaterory(String caterory) {
+        this.caterory = caterory;
+        return this;
+    }
 }
 

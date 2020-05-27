@@ -1,7 +1,6 @@
 package ar.com.ada.aprende.model.dto;
 
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +11,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.Year;
 
 @Getter
@@ -26,7 +24,7 @@ public class CompanyDTO implements Serializable {
     @NotBlank(message = "nameCompany is required")
     private String nameCompany;
 
-     @NotNull (message = "cuil is required")
+    @NotNull(message = "cuil is required")
     private Long cuil;
 
     @NotBlank(message = "typeCompany is required")
@@ -43,5 +41,6 @@ public class CompanyDTO implements Serializable {
     private Integer contactNumber;
 
     @Valid
+    @NotNull(message = "typeCategoryCompany is required")
     private TypeCategoryCompanyDTO typeCategoryCompany;
 }
