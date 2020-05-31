@@ -44,3 +44,4 @@ public class CompanyDTO implements Serializable {
     @NotNull(message = "typeCategoryCompany is required")
     private TypeCategoryCompanyDTO typeCategoryCompany;
 }
+

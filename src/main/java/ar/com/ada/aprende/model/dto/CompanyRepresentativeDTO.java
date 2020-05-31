@@ -1,12 +1,14 @@
 package ar.com.ada.aprende.model.dto;
 
 import ar.com.ada.aprende.model.entity.Company;
+import ar.com.ada.aprende.model.entity.TypeDocument;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -17,7 +19,6 @@ import java.io.Serializable;
 @JsonPropertyOrder({"id", "name","lastName","PositionInTheCompany", "email"})
 public class CompanyRepresentativeDTO implements Serializable {
 
-    @NotNull(message = "id company representative is required")
     public Long id;
 
     @NotBlank(message = "name company representative is required")
@@ -34,4 +35,11 @@ public class CompanyRepresentativeDTO implements Serializable {
 
     @NotNull(message = "id company is required")
     private Long companyId;
+
+    @Valid
+    @NotNull(message = "typeDocument is required")
+    private TypeDocument typeDocument;
+
+
+    //todo: arreglar recursividad de informacion
 }
