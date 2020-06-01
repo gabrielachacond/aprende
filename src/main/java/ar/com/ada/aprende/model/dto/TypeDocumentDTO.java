@@ -20,7 +20,7 @@ public class TypeDocumentDTO implements Serializable {
 
     @NotNull(message = "id document Type is required")
     private Long id;
-
+    
     private String type;
 
 }

@@ -22,4 +22,14 @@ public class TypeDocument {
 
     @OneToMany(mappedBy = "typeDocument")
     private List<CompanyRepresentative> companyRepresentatives;
+
+    public TypeDocument setId(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public TypeDocument setType(String type) {
+        this.type = type;
+        return this;
+    }
 }
