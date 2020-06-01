@@ -1,6 +1,8 @@
 package ar.com.ada.aprende.controller;
 
 import ar.com.ada.aprende.model.dto.CompanyDTO;
+import ar.com.ada.aprende.model.dto.CompanyRepresentativeDTO;
+import ar.com.ada.aprende.service.CompanyRepresentativeServices;
 import ar.com.ada.aprende.service.CompanyServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,6 +23,10 @@ public class CompanyController {
     @Qualifier("companyServices")
     private CompanyServices companyServices;
 
+    @Autowired
+    @Qualifier("companyRepresentativeServices")
+    private CompanyRepresentativeServices companyRepresentativeServices;
+
     @PostMapping({"", "/"}) // localhost:8080/Companies y localhost:8080/companies/
     public ResponseEntity addNewCompany(@Valid @RequestBody CompanyDTO companyDTO) throws URISyntaxException {
         CompanyDTO companyDTOSaved = companyServices.save(companyDTO);
@@ -29,6 +35,17 @@ public class CompanyController {
                 .body(companyDTOSaved);
 
     }
+
+
+    @PostMapping({"/representatives", "/representatives/"}) // localhost:8080/companies/representatives y localhost:8080/companies/representatives/
+    public ResponseEntity addNewRepresentative(@Valid @RequestBody CompanyRepresentativeDTO companyRepresentativeDTO) throws URISyntaxException {
+        CompanyRepresentativeDTO companyRepresentativeDTOSaved = companyRepresentativeServices.save(companyRepresentativeDTO);
+        return ResponseEntity
+                .created(new URI("/representatives/" + companyRepresentativeDTOSaved.getId()))
+                .body(companyRepresentativeDTOSaved);
+
+    }
+
 
 }
 
