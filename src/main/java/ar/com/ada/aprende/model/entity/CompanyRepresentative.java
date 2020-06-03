@@ -23,7 +23,7 @@ public class CompanyRepresentative {
     private String lastName;
 
     @Column(nullable = false, length = 100)
-    private String PositionInTheCompany;
+    private String positionInTheCompany;
 
     @Column(nullable = false, length = 200)
     private String email;
