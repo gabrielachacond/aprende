@@ -7,13 +7,12 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity(name = "Participants")
-public class Participants {
+public class Participant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -34,7 +33,7 @@ public class Participants {
     private String address;
 
     @OneToMany(mappedBy = "participants")
-    private List<CourseHasParticipants> courseHasParticipants;
+    private List<CourseHasParticipant> courseHasParticipants;
 
     @OneToOne(mappedBy = "participants")
     private SocioEconomyStudy socioEconomyStudy;

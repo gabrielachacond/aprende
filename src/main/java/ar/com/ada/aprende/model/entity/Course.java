@@ -49,7 +49,7 @@ public class Course {
 
 
     @OneToMany(mappedBy = "course")
-    private Set<CourseHasParticipants> courseHasParticipants;
+    private Set<CourseHasParticipant> courseHasParticipants;
 
 
 }
