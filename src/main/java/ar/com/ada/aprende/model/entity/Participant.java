@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity(name = "Participants")
+@Entity(name = "Participant")
 public class Participant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,9 +32,9 @@ public class Participant {
     @Column(nullable = false, length = 200)
     private String address;
 
-    @OneToMany(mappedBy = "participants")
+    @OneToMany(mappedBy = "participant")
     private List<CourseHasParticipant> courseHasParticipants;
 
-    @OneToOne(mappedBy = "participants")
+    @OneToOne(mappedBy = "participant")
     private SocioEconomyStudy socioEconomyStudy;
 }

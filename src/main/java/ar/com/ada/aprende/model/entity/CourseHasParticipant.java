@@ -20,7 +20,7 @@ public class CourseHasParticipant implements Serializable {
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "Participants_id")
+    @JoinColumn(name = "Participant_id")
     private Participant participant;
 
     @Column(nullable = false, length = 100)

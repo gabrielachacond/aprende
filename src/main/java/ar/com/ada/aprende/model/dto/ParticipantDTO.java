@@ -36,12 +36,22 @@ public class ParticipantDTO implements Serializable {
     @NotBlank(message = "address is required")
     private String address;
 
-    @Valid
-    @NotNull(message = "courseHasParticipant is required")
+ //*   @Valid
+   // @NotNull(message = "courseHasParticipant is required")
     private CourseHasParticipantDTO courseHasParticipant;
 
-    @Valid
-    @NotNull(message = "socioEconomyStudy is required")
+  //  @Valid
+ //   @NotNull(message = "socioEconomyStudy is required")
     private SocioEconomyStudyDTO socioEconomyStudy;
 
 }
+/*
+{
+"name":"Carolina",
+"lastName":"dugarte",
+"gender":"femenino",
+"birthday":"12-03-1986",
+"address":"viamonte2506",
+
+}
+*/
