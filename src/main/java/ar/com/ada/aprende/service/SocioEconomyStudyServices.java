@@ -1,25 +1,18 @@
 package ar.com.ada.aprende.service;
 
 import ar.com.ada.aprende.component.BusinessLogicExceptionComponent;
-import ar.com.ada.aprende.model.dto.CompanyRepresentativeDTO;
-import ar.com.ada.aprende.model.dto.ParticipantDTO;
 import ar.com.ada.aprende.model.dto.SocioEconomyStudyDTO;
-import ar.com.ada.aprende.model.mapper.CompanyRepresentativeMapper;
 import ar.com.ada.aprende.model.mapper.CycleAvoidingMappingContext;
-import ar.com.ada.aprende.model.mapper.ParticipantMapper;
 import ar.com.ada.aprende.model.mapper.SocioEconomyStudyMapper;
-import ar.com.ada.aprende.model.repository.CompanyRepository;
-import ar.com.ada.aprende.model.repository.CompanyRepresentativeRepository;
 import ar.com.ada.aprende.model.repository.ParticipantRepository;
-import ar.com.ada.aprende.model.repository.TypeDocumentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service ("socioEconomyStudyServices")
-public class SocioEconomyStudyServices implements Services <SocioEconomyStudyDTO> {
+@Service("socioEconomyStudyServices")
+public class SocioEconomyStudyServices implements Services<SocioEconomyStudyDTO> {
     @Autowired
     @Qualifier("businessLogicExceptionComponent")
     private BusinessLogicExceptionComponent logicExceptionComponent;
@@ -34,18 +27,19 @@ public class SocioEconomyStudyServices implements Services <SocioEconomyStudyDTO
 
     private SocioEconomyStudyMapper socioEconomyStudyMapper = SocioEconomyStudyMapper.MAPPER;
 
-    @Override
-    public List<SocioEconomyStudyDTO> findAll () { return null; }
 
     @Override
-    public SocioEconomyStudyDTO save(SocioEconomyStudyDTO dto){
+    public List<SocioEconomyStudyDTO> findAll() {
+        return null;
+    }
 
+    @Override
+    public SocioEconomyStudyDTO save(SocioEconomyStudyDTO dto) {
+        return null;
     }
 
     @Override
     public void delete(Long id) {
 
     }
-
-
 }
