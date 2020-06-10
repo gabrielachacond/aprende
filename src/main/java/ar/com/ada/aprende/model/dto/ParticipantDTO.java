@@ -50,7 +50,7 @@ public class ParticipantDTO implements Serializable {
 "name":"Carolina",
 "lastName":"dugarte",
 "gender":"femenino",
-"birthday":"12-03-1986",
+"birthday":"1992/",
 "address":"viamonte2506",
 
 }
