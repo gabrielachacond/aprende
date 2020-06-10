@@ -34,7 +34,7 @@ public class SocioEconomyStudy {
 
     @OneToOne
     @JoinColumn(name = "Participants_id", referencedColumnName = "id")
-    private Participants participants;
+    private Participant participant;
 
 
 

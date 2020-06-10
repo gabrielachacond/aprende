@@ -7,13 +7,12 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity(name = "CourseHasParticipants")
-public class CourseHasParticipants implements Serializable {
+@Entity(name = "CourseHasParticipant")
+public class CourseHasParticipant implements Serializable {
     @Id
     @ManyToOne
     @JoinColumn(name = "Course_id")
@@ -21,8 +20,8 @@ public class CourseHasParticipants implements Serializable {
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "Participants_id")
-    private Participants participants;
+    @JoinColumn(name = "Participant_id")
+    private Participant participant;
 
     @Column(nullable = false, length = 100)
     private Boolean courseHasFinish;
