@@ -37,7 +37,8 @@ public class CompanyController {
     }
 
 
-    @PostMapping({"/representatives", "/representatives/"}) // localhost:8080/companies/representatives y localhost:8080/companies/representatives/
+    @PostMapping({"/representatives", "/representatives/"})
+    // localhost:8080/companies/representatives y localhost:8080/companies/representatives/
     public ResponseEntity addNewRepresentative(@Valid @RequestBody CompanyRepresentativeDTO companyRepresentativeDTO) throws URISyntaxException {
         CompanyRepresentativeDTO companyRepresentativeDTOSaved = companyRepresentativeServices.save(companyRepresentativeDTO);
         return ResponseEntity

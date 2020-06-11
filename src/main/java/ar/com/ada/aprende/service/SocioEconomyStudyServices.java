@@ -2,9 +2,12 @@ package ar.com.ada.aprende.service;
 
 import ar.com.ada.aprende.component.BusinessLogicExceptionComponent;
 import ar.com.ada.aprende.model.dto.SocioEconomyStudyDTO;
+import ar.com.ada.aprende.model.entity.Participant;
+import ar.com.ada.aprende.model.entity.SocioEconomyStudy;
 import ar.com.ada.aprende.model.mapper.CycleAvoidingMappingContext;
 import ar.com.ada.aprende.model.mapper.SocioEconomyStudyMapper;
 import ar.com.ada.aprende.model.repository.ParticipantRepository;
+import ar.com.ada.aprende.model.repository.SocioEconomyStudyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -22,6 +25,10 @@ public class SocioEconomyStudyServices implements Services<SocioEconomyStudyDTO>
     private ParticipantRepository participantRepository;
 
     @Autowired
+    @Qualifier("socioEconomyStudyRepository")
+    private SocioEconomyStudyRepository socioEconomyStudyRepository;
+
+    @Autowired
     @Qualifier("cycleAvoidingMappingContext")
     private CycleAvoidingMappingContext context;
 
@@ -35,7 +42,18 @@ public class SocioEconomyStudyServices implements Services<SocioEconomyStudyDTO>
 
     @Override
     public SocioEconomyStudyDTO save(SocioEconomyStudyDTO dto) {
-        return null;
+        Long participantId = dto.getParticipantId();
+        Participant participant = participantRepository
+                .findById(participantId)
+                .orElseThrow(() -> logicExceptionComponent.throwExceptionEntityNotFound("Participant", participantId));
+
+        SocioEconomyStudy socioEconomyStudyToSave = socioEconomyStudyMapper.toEntity(dto, context);
+        socioEconomyStudyToSave.setParticipant(participant);
+
+        SocioEconomyStudy socioEconomyStudySaved = socioEconomyStudyRepository.save(socioEconomyStudyToSave);
+        SocioEconomyStudyDTO socioEconomyStudyDTOSaved = socioEconomyStudyMapper.toDto(socioEconomyStudySaved, context);
+
+        return socioEconomyStudyDTOSaved;
     }
 
     @Override
