@@ -32,7 +32,21 @@ public class SocioEconomyStudyDTO implements Serializable {
     @NotNull(message = "howManyFamily is required")
     private Integer howManyFamily;
 
-    @Valid
-    @NotNull(message = "participant is required")
+    @NotNull(message = "id participant is required")
+    private Long participantId;
+
+
     private ParticipantDTO participant;
 }
+
+/*
+para probar la validacion con PM
+{
+    "isStudying": true,
+    "isWorking": true,
+    "isMonthlyAmount": 45000,
+    "isFamilyCharge": false,
+    "howManyFamily": 1,
+    "participantId":"1"
+}
+*/
