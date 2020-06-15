@@ -47,9 +47,6 @@ public class Course {
     @JoinColumn(name = "Company_id")
     private Company company;
 
-
     @OneToMany(mappedBy = "course")
     private Set<CourseHasParticipant> courseHasParticipants;
-
-
 }

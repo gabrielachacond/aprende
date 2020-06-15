@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository("typeCategoryCourseRepository")
 public interface TypeCategoryCourseRepository extends JpaRepository<TypeCategoryCourse, Long> {
+
+    //todo hacer el metodo resetAutoincrementValue
 }

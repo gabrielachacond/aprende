@@ -57,5 +57,7 @@ public class DataCleaner implements ApplicationRunner {
             typeDocumentRepository.resetAutoincrementValue();
 
         }
+
+        //todo agregar el delete y reset de TypeModalityCourse y TypeCategoryCourse
     }
 }
