@@ -1,9 +1,6 @@
 package ar.com.ada.aprende.component.data;
 
-import ar.com.ada.aprende.model.repository.CompanyRepository;
-import ar.com.ada.aprende.model.repository.CompanyRepresentativeRepository;
-import ar.com.ada.aprende.model.repository.TypeCategoryCompanyRepository;
-import ar.com.ada.aprende.model.repository.TypeDocumentRepository;
+import ar.com.ada.aprende.model.repository.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +34,14 @@ public class DataCleaner implements ApplicationRunner {
     @Qualifier("companyRepresentativeRepository")
     private CompanyRepresentativeRepository companyRepresentativeRepository;
 
+    @Autowired
+    @Qualifier("typeCategoryCourseRepository")
+    private TypeCategoryCourseRepository typeCategoryCourseRepository;
+
+    @Autowired
+    @Qualifier("typeModalityCourseRepository")
+    private TypeModalityCourseRepository typeModalityCourseRepository;
+
 
     @Override
     @Transactional
@@ -49,15 +54,17 @@ public class DataCleaner implements ApplicationRunner {
             companyRepository.deleteAll();
             typeCategoryCompanyRepository.deleteAll();
             typeDocumentRepository.deleteAll();
+            typeCategoryCourseRepository.deleteAll();
+            typeModalityCourseRepository.deleteAll();
 
             // para Reiniciar los indices de las tablas ''
             companyRepresentativeRepository.resetAutoincrementValue();
             companyRepository.resetAutoincrementValue();
             typeCategoryCompanyRepository.resetAutoincrementValue();
             typeDocumentRepository.resetAutoincrementValue();
+            typeCategoryCourseRepository.resetAutoincrementValue();
+            typeModalityCourseRepository.resetAutoincrementValue();
 
         }
-
-        //todo agregar el delete y reset de TypeModalityCourse y TypeCategoryCourse
     }
 }

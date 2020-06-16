@@ -1,5 +1,21 @@
 package ar.com.ada.aprende.model.dto;
 
-//todo hacer
-public class TypeModalityCourseDTO {
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+
+@Setter
+@Getter
+@NoArgsConstructor
+@JsonPropertyOrder({"id", "modality"})
+public class TypeModalityCourseDTO implements Serializable {
+
+    @NotNull(message = "id modality is required")
+    private Long id;
+
+    private String modality;
 }

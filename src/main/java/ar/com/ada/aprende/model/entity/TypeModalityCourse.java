@@ -10,10 +10,10 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity (name = "TypeModalityCourse")
+@Entity(name = "TypeModalityCourse")
 public class TypeModalityCourse {
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, length = 100)
@@ -22,4 +22,13 @@ public class TypeModalityCourse {
     @OneToMany(mappedBy = "typeModalityCourse")
     private List<Course> courses;
 
+    public TypeModalityCourse setId(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public TypeModalityCourse setModality(String modality) {
+        this.modality = modality;
+        return this;
+    }
 }
