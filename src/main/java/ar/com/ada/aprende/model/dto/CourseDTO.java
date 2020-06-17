@@ -53,3 +53,21 @@ public class CourseDTO implements Serializable {
 
     private Set<CourseHasParticipantDTO> courseHasParticipants;
 }
+/*
+para probar la validacion con PM
+{
+    "nameCourse": "java",
+    "descriptionCourse": "aprende en 5 meses java",
+    "costCourse": 100000,
+    "hoursCourse": 300,
+    "totalPaticipants": 20,
+    "placesToScholarship": 5
+    "companyId":1,
+
+   "typeModalityCourse":{
+       "id:1 }
+    "typeCategoryCourse":{
+        "id": 1
+    }
+}
+*/
