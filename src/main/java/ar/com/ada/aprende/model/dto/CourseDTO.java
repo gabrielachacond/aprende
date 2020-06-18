@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -36,6 +37,12 @@ public class CourseDTO implements Serializable {
 
     @NotNull(message = "placesToScholarship is required")
     private Integer placesToScholarship;
+
+    @NotNull(message = "purchasedCouponCounter is required")
+    private Integer purchasedCouponCounter;
+
+    @NotNull(message = "scholarshipCouponCounter is required")
+    private  Integer scholarshipCouponCounter;
 
 
     @Valid

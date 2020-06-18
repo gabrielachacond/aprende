@@ -74,6 +74,10 @@ public class CourseServices implements Services<CourseDTO> {
         courseToSave.setTypeCategoryCourse(typeCategoryCourse);
         courseToSave.setTypeModalityCourse(typeModalityCourse);
 
+        int purchasedCouponCounter = dto.getTotalPaticipants() - dto.getPlacesToScholarship();
+        courseToSave.setPurchasedCouponCounter(purchasedCouponCounter);
+        courseToSave.setScholarshipCouponCounter(dto.getPlacesToScholarship());
+
         Course courseSaved = courseRepository.save(courseToSave);
         CourseDTO courseDTOSaved = courseMapper.toDto(courseSaved, context);
 
