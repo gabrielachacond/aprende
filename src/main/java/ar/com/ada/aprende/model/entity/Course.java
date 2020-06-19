@@ -56,8 +56,4 @@ public class Course {
     @OneToMany(mappedBy = "course")
     private Set<CourseHasParticipant> courseHasParticipants;
 
-    //prueba 1 para validacion  por id en course
-    public Course (Long id) {
-        this.id = id;
-    }
 }
