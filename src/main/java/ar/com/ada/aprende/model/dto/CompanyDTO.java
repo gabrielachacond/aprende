@@ -1,6 +1,7 @@
 package ar.com.ada.aprende.model.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,7 @@ import java.time.Year;
 @Getter
 @Setter
 @NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({"id", "nameCompany", "cuil", "typeCompany", "addressCompany", "fundationYear", "contactNumber"})
 public class CompanyDTO implements Serializable {
 
