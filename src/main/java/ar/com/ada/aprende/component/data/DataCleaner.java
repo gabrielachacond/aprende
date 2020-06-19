@@ -1,9 +1,6 @@
 package ar.com.ada.aprende.component.data;
 
-import ar.com.ada.aprende.model.repository.CompanyRepository;
-import ar.com.ada.aprende.model.repository.CompanyRepresentativeRepository;
-import ar.com.ada.aprende.model.repository.TypeCategoryCompanyRepository;
-import ar.com.ada.aprende.model.repository.TypeDocumentRepository;
+import ar.com.ada.aprende.model.repository.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +23,10 @@ public class DataCleaner implements ApplicationRunner {
     private TypeCategoryCompanyRepository typeCategoryCompanyRepository;
 
     @Autowired
+    @Qualifier("courseRepository")
+    private CourseRepository courseRepository;
+
+    @Autowired
     @Qualifier("companyRepository")
     private CompanyRepository companyRepository;
 
@@ -37,6 +38,14 @@ public class DataCleaner implements ApplicationRunner {
     @Qualifier("companyRepresentativeRepository")
     private CompanyRepresentativeRepository companyRepresentativeRepository;
 
+    @Autowired
+    @Qualifier("typeCategoryCourseRepository")
+    private TypeCategoryCourseRepository typeCategoryCourseRepository;
+
+    @Autowired
+    @Qualifier("typeModalityCourseRepository")
+    private TypeModalityCourseRepository typeModalityCourseRepository;
+
 
     @Override
     @Transactional
@@ -46,16 +55,19 @@ public class DataCleaner implements ApplicationRunner {
 
             // Para borrar los registros de las tablas y por eso las elimine de Categorydata
             companyRepresentativeRepository.deleteAll();
-            companyRepository.deleteAll();
-            typeCategoryCompanyRepository.deleteAll();
-            typeDocumentRepository.deleteAll();
-
-            // para Reiniciar los indices de las tablas ''
             companyRepresentativeRepository.resetAutoincrementValue();
+            courseRepository.deleteAll();
+            courseRepository.resetAutoincrementValue();
+            companyRepository.deleteAll();
             companyRepository.resetAutoincrementValue();
+            typeCategoryCompanyRepository.deleteAll();
             typeCategoryCompanyRepository.resetAutoincrementValue();
+            typeDocumentRepository.deleteAll();
             typeDocumentRepository.resetAutoincrementValue();
-
+            typeCategoryCourseRepository.deleteAll();
+            typeCategoryCourseRepository.resetAutoincrementValue();
+            typeModalityCourseRepository.deleteAll();
+            typeModalityCourseRepository.resetAutoincrementValue();
         }
     }
 }

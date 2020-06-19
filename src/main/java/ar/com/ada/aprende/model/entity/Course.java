@@ -35,6 +35,12 @@ public class Course {
     @Column(nullable = false, length = 100)
     private Integer placesToScholarship;
 
+    @Column(nullable = false)
+    private Integer purchasedCouponCounter;
+
+    @Column(nullable = false)
+    private Integer scholarshipCouponCounter;
+
     @ManyToOne
     @JoinColumn(name = "TypeCategoryCourse_id")
     private TypeCategoryCourse typeCategoryCourse;
@@ -47,9 +53,11 @@ public class Course {
     @JoinColumn(name = "Company_id")
     private Company company;
 
-
     @OneToMany(mappedBy = "course")
     private Set<CourseHasParticipant> courseHasParticipants;
 
-
+    //prueba 1 para validacion  por id en course
+    public Course (Long id) {
+        this.id = id;
+    }
 }

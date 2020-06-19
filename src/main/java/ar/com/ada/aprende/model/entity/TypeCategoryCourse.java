@@ -23,4 +23,14 @@ public class TypeCategoryCourse {
 
     @OneToMany(mappedBy = "typeCategoryCourse")
     private List<Course> courses;
+
+    public TypeCategoryCourse setId(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public TypeCategoryCourse setCategory(String category) {
+        this.category = category;
+        return this;
+    }
 }
