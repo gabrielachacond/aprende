@@ -23,6 +23,10 @@ public class DataCleaner implements ApplicationRunner {
     private TypeCategoryCompanyRepository typeCategoryCompanyRepository;
 
     @Autowired
+    @Qualifier("courseRepository")
+    private CourseRepository courseRepository;
+
+    @Autowired
     @Qualifier("companyRepository")
     private CompanyRepository companyRepository;
 
@@ -51,20 +55,19 @@ public class DataCleaner implements ApplicationRunner {
 
             // Para borrar los registros de las tablas y por eso las elimine de Categorydata
             companyRepresentativeRepository.deleteAll();
-            companyRepository.deleteAll();
-            typeCategoryCompanyRepository.deleteAll();
-            typeDocumentRepository.deleteAll();
-            typeCategoryCourseRepository.deleteAll();
-            typeModalityCourseRepository.deleteAll();
-
-            // para Reiniciar los indices de las tablas ''
             companyRepresentativeRepository.resetAutoincrementValue();
+            courseRepository.deleteAll();
+            courseRepository.resetAutoincrementValue();
+            companyRepository.deleteAll();
             companyRepository.resetAutoincrementValue();
+            typeCategoryCompanyRepository.deleteAll();
             typeCategoryCompanyRepository.resetAutoincrementValue();
+            typeDocumentRepository.deleteAll();
             typeDocumentRepository.resetAutoincrementValue();
+            typeCategoryCourseRepository.deleteAll();
             typeCategoryCourseRepository.resetAutoincrementValue();
+            typeModalityCourseRepository.deleteAll();
             typeModalityCourseRepository.resetAutoincrementValue();
-
         }
     }
 }

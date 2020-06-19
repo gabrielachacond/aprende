@@ -23,6 +23,7 @@ public class TypeCategoryCourseLoaderData implements ApplicationRunner {
     @Value("${spring.application.env}")
     private String appEnv;
 
+
     @Autowired
     @Qualifier("typeCategoryCourseRepository")
     private TypeCategoryCourseRepository typeCategoryCourseRepository;

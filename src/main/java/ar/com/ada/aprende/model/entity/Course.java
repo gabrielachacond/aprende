@@ -35,10 +35,10 @@ public class Course {
     @Column(nullable = false, length = 100)
     private Integer placesToScholarship;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false)
     private Integer purchasedCouponCounter;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false)
     private Integer scholarshipCouponCounter;
 
     @ManyToOne
