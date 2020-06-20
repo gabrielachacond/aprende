@@ -30,4 +30,6 @@ public class CourseHasParticipantDTO implements Serializable {
     @NotNull(message = "isApproved is required")
     private Boolean isApproved;
 
+    private Integer approvalRate;
+
 }
