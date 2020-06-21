@@ -13,24 +13,43 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Entity(name = "CourseHasParticipant")
 public class CourseHasParticipant implements Serializable {
-    @Id
+
+    @EmbeddedId
+    private CourseHasParticipantId id;
+
     @ManyToOne
-    @JoinColumn(name = "Course_id")
+    @MapsId ("courseId")
     private Course course;
 
-    @Id
     @ManyToOne
-    @JoinColumn(name = "Participant_id")
+    @MapsId ("participantId")
     private Participant participant;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, columnDefinition = "boolean")
     private Boolean courseHasFinish;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, columnDefinition = "boolean")
     private Boolean isScholaship;
 
-    @Column(nullable = false, length = 100)
+    @Column(columnDefinition = "boolean")
     private Boolean isApproved;
 
+    @Column()
+    private Integer approvalRate;
+
+    public CourseHasParticipant setId(CourseHasParticipantId id) {
+        this.id = id;
+        return  this;
+    }
+
+    public CourseHasParticipant setCourse(Course course) {
+        this.course = course;
+        return  this;
+    }
+
+    public CourseHasParticipant setParticipant(Participant participant) {
+        this.participant = participant;
+        return  this;
+    }
 }
 

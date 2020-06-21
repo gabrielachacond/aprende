@@ -2,6 +2,7 @@ package ar.com.ada.aprende.model.dto;
 
 import ar.com.ada.aprende.model.entity.Course;
 import ar.com.ada.aprende.model.entity.Participant;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Getter;
@@ -18,8 +19,11 @@ import java.io.Serializable;
 @JsonPropertyOrder({"course", "participant", "courseHasFinish", "isScholaship", "isApproved"})
 public class CourseHasParticipantDTO implements Serializable {
 
-    private Course course;
-    private Participant participant;
+    @JsonIgnoreProperties({"courseHasParticipants"})
+    private CourseDTO course;
+
+    @JsonIgnoreProperties({"courseHasParticipant"})
+    private ParticipantDTO participant;
 
     @NotNull(message = "courseHasFinish is required")
     private Boolean courseHasFinish;
@@ -29,5 +33,7 @@ public class CourseHasParticipantDTO implements Serializable {
 
     @NotNull(message = "isApproved is required")
     private Boolean isApproved;
+
+    private Integer approvalRate;
 
 }
