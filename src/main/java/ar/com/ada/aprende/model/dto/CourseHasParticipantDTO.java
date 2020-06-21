@@ -20,10 +20,10 @@ import java.io.Serializable;
 public class CourseHasParticipantDTO implements Serializable {
 
     @JsonIgnoreProperties({"courseHasParticipants"})
-    private Course course;
+    private CourseDTO course;
 
     @JsonIgnoreProperties({"courseHasParticipant"})
-    private Participant participant;
+    private ParticipantDTO participant;
 
     @NotNull(message = "courseHasFinish is required")
     private Boolean courseHasFinish;

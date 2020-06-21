@@ -23,7 +23,7 @@ public class StudentCourseApplicationDTO implements Serializable {
 }
 /*
 http://localhost:8080/courses/1/partipants/1
-// se hizo la prueba y dio ok lo creo 
+// se hizo la prueba y dio ok lo creo
 /*
 {
     "isScholaship": true
