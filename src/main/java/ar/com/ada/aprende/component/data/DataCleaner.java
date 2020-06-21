@@ -46,6 +46,18 @@ public class DataCleaner implements ApplicationRunner {
     @Qualifier("typeModalityCourseRepository")
     private TypeModalityCourseRepository typeModalityCourseRepository;
 
+    @Autowired
+    @Qualifier("courseHasParticipantRepository")
+    private CourseHasParticipantRepository courseHasParticipantRepository;
+
+    @Autowired
+    @Qualifier("socioEconomyStudyRepository")
+    private SocioEconomyStudyRepository socioEconomyStudyRepository;
+
+    @Autowired
+    @Qualifier("participantRepository")
+    private ParticipantRepository participantRepository;
+
 
     @Override
     @Transactional
@@ -54,6 +66,12 @@ public class DataCleaner implements ApplicationRunner {
             LOGGER.info("Data Cleaner initializer...\n");
 
             // Para borrar los registros de las tablas y por eso las elimine de Categorydata
+            courseHasParticipantRepository.deleteAll();
+            courseHasParticipantRepository.resetAutoincrementValue();
+            socioEconomyStudyRepository.deleteAll();
+            socioEconomyStudyRepository.resetAutoincrementValue();
+            participantRepository.deleteAll();
+            participantRepository.resetAutoincrementValue();
             companyRepresentativeRepository.deleteAll();
             companyRepresentativeRepository.resetAutoincrementValue();
             courseRepository.deleteAll();
@@ -68,6 +86,7 @@ public class DataCleaner implements ApplicationRunner {
             typeCategoryCourseRepository.resetAutoincrementValue();
             typeModalityCourseRepository.deleteAll();
             typeModalityCourseRepository.resetAutoincrementValue();
+
         }
     }
 }

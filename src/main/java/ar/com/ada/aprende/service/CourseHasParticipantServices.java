@@ -55,6 +55,12 @@ public class CourseHasParticipantServices {
                 .setCourseId(course.getId())
                 .setParticipantId(participant.getId());
 
+        courseHasParticipantRepository
+                .findById(id)
+                .ifPresent(courseHasParticipant -> {
+                    throw logicExceptionComponent.getExceptionCourseApplicationAlreadyExists(id);
+                });
+
         CourseHasParticipant courseHasParticipantToSave = new CourseHasParticipant()
                 .setId(id)
                 .setCourse(course)
@@ -64,13 +70,13 @@ public class CourseHasParticipantServices {
         if (dto.getIsScholaship()) {
             courseHasParticipantDTOSaved = this.saveCourseApplicationByScholaship(courseHasParticipantToSave);
         } else {
-            courseHasParticipantDTOSaved = this.saveCourseApplicationByPurchase(courseHasParticipantToSave, course);
+            courseHasParticipantDTOSaved = this.saveCourseApplicationByPurchase(courseHasParticipantToSave);
         }
 
         return courseHasParticipantDTOSaved;
     }
 
-    private CourseHasParticipantDTO saveCourseApplicationByPurchase(CourseHasParticipant courseHasParticipantToSave, Course course) {
+    private CourseHasParticipantDTO saveCourseApplicationByPurchase(CourseHasParticipant courseHasParticipantToSave) {
         Integer purchasedCouponCounter = courseHasParticipantToSave.getCourse().getPurchasedCouponCounter();
         if (purchasedCouponCounter == 0)
             throw logicExceptionComponent.getExceptionSoldOut(courseHasParticipantToSave.getCourse().getNameCourse());
@@ -83,8 +89,6 @@ public class CourseHasParticipantServices {
 
         CourseHasParticipant courseHasParticipantSave = courseHasParticipantRepository.save(courseHasParticipantToSave);
 
-//            course.setPurchasedCouponCounter(purchasedCouponCounter - 1);
-//            courseRepository.save(course);
         CourseHasParticipantDTO courseHasParticipantDTOSaved = courseHasParticipantMapper.toDto(courseHasParticipantSave, context);
 
         return courseHasParticipantDTOSaved;
@@ -99,6 +103,5 @@ public class CourseHasParticipantServices {
         return courseHasParticipantDTOSaved;
 
     }
-
 
 }
