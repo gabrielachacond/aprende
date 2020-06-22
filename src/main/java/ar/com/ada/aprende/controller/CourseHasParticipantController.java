@@ -1,6 +1,7 @@
 package ar.com.ada.aprende.controller;
 
 import ar.com.ada.aprende.model.dto.CourseHasParticipantDTO;
+import ar.com.ada.aprende.model.dto.CourseScholarshipApprovalDTO;
 import ar.com.ada.aprende.model.dto.StudentCourseApplicationDTO;
 import ar.com.ada.aprende.service.CourseHasParticipantServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,17 @@ public class CourseHasParticipantController {
                 .saveCourseApplication(studentCourseApplicationDTO, courseId, partipantId);
         return ResponseEntity.ok(courseHasParticipantDTOSaved);
 
+    }
+
+    //  localhost:8080/courses/1/participants/1 y localhost:8080/courses/1/participants/1/
+    @PostMapping({"/courses/{courseId}/partipants/{partipantId}/approval", "/courses/{courseId}/partipants/{partipantId}/approval/"})
+    public ResponseEntity doCourseScholarshipApproval(
+            @Valid @RequestBody CourseScholarshipApprovalDTO courseScholarshipApprovalDTO,
+            @PathVariable Long courseId,
+            @PathVariable Long partipantId
+    ) {
+        CourseHasParticipantDTO courseHasParticipantDTOUpdated = courseHasParticipantServices
+                .courseScholarshipApproval(courseScholarshipApprovalDTO, courseId, partipantId);
+        return ResponseEntity.ok(courseHasParticipantDTOUpdated);
     }
 }
