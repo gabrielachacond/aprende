@@ -17,9 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-
 @Service("courseHasParticipantServices")
 public class CourseHasParticipantServices {
 
@@ -108,7 +105,7 @@ public class CourseHasParticipantServices {
 
     }
 
-    public CourseHasParticipantDTO courseScholarshipApproval(CourseScholarshipApprovalDTO dto, Long courseId, Long participantId, Long id) {
+    public CourseHasParticipantDTO courseScholarshipApproval(CourseScholarshipApprovalDTO dto, Long courseId, Long participantId) {
         Course course = courseRepository
                 .findById(courseId)
                 .orElseThrow(() -> logicExceptionComponent.throwExceptionEntityNotFound("Course", courseId));
@@ -122,49 +119,15 @@ public class CourseHasParticipantServices {
                 .setParticipantId(participant.getId());
 
         CourseHasParticipant courseHasParticipant = courseHasParticipantRepository
-                .findById(id).
-                        orElseThrow(() -> logicExceptionComponent.throwExceptionEntityNotFound("CourseHasParticipant", id));
-
-
-        CourseHasParticipantDTO courseHasParticipantDTOUpdated = courseHasParticipantMapper.toDto(courseHasParticipantUpdated, context);
-
-        CourseHasParticipant courseHasParticipantToSave = new CourseHasParticipant()
-                .setId(id)
-                .setCourse(course)
-                .setParticipant(participant);
-
-        CourseHasParticipantDTO courseHasParticipantDTOSaved;
-        if (dto.getIsApproved()) {
-            courseHasParticipantDTOSaved = this.courseScholarshipApproval();
-        } else {
-            courseHasParticipantDTOSaved = this.courseScholarshipApproval(courseHasParticipantDTOUpdated);
-        }
-        return courseHasParticipantDTOUpdated;
-    }
-
-
-
-
-
-
-
+                .findById(id)
+                .orElseThrow(() -> logicExceptionComponent.throwExceptionEntityNotFound("CourseHasParticipant", id));
 
         courseHasParticipant.setIsApproved(dto.getIsApproved());
-
-        courseHasParticipant.setApprovalRate(dto.setApprovalRate())
-
+        courseHasParticipant.setApprovalRate(dto.getApprovalRate());
 
 
-
+        CourseHasParticipantDTO courseHasParticipantDTOUpdated = courseHasParticipantMapper.toDto(courseHasParticipant, context);
 
 
     }
-
-    /*\
-courseHasParticipant.setIsApproved(dto.getIsApproved);
-courseHasParticipant.setApprovalRate(dto.setApprovalRate);
-CourseHasParticipant courseHasParticipantUpdated = courseHasParticipantRepository.save(courseHasParticipant)*/
-}
-
-
 }
