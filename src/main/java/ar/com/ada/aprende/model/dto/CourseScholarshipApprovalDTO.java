@@ -13,21 +13,32 @@ import javax.validation.constraints.NotNull;
 @Setter
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({"isApproved"})
+@JsonPropertyOrder({"isApproved", "approvalRate"})
 public class CourseScholarshipApprovalDTO {
 
     @NotNull(message = "isApproved is required")
     private Boolean isApproved;
 
+    @NotNull(message = "approvalRate is required")
     private Integer approvalRate;
 }
 
 /*
- Para el PM
+ Para el PM dio 200 ok
 
-http://localhost:8080/courses/1/participants/1 y localhost:8080/courses/1/participants/1/
+ http://localhost:8080/courses/1/partipants/1/approval
 
 {
-    "isApproved": true
+    "isApproved": true,
+    "approvalRate": 75
+}
+
+{
+ en la segunda prueba 200 ok
+
+ "CourseHasFinish": false,
+ "isScholaship": true,
+ "isApproved": true,
+    "approvalRate": 75
 }
 */

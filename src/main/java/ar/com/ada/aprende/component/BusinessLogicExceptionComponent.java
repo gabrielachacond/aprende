@@ -50,5 +50,18 @@ public class BusinessLogicExceptionComponent {
         );
     }
 
+    public RuntimeException throwExceptionEntityNotFound(String entityName, CourseHasParticipantId id) {
+        ApiEntityError apiEntityError = new ApiEntityError(
+                entityName,
+                "NotFound",
+                "The " + entityName + " with Course id '" + id.getCourseId() + "' and Participant id '" + id.getParticipantId() + "' does not exist"
+        );
+        return new BusinessLogicException(
+                entityName + " does not exist",
+                HttpStatus.NOT_FOUND,
+                apiEntityError
+        );
+    }
+
 }
 

@@ -106,28 +106,27 @@ public class CourseHasParticipantServices {
     }
 
     public CourseHasParticipantDTO courseScholarshipApproval(CourseScholarshipApprovalDTO dto, Long courseId, Long participantId) {
-        Course course = courseRepository
-                .findById(courseId)
-                .orElseThrow(() -> logicExceptionComponent.throwExceptionEntityNotFound("Course", courseId));
-
-        Participant participant = participantRepository
-                .findById(participantId)
-                .orElseThrow(() -> logicExceptionComponent.throwExceptionEntityNotFound("Participant", participantId));
-
         CourseHasParticipantId id = new CourseHasParticipantId()
-                .setCourseId(course.getId())
-                .setParticipantId(participant.getId());
-
+                .setCourseId(courseId)
+                .setParticipantId(participantId);
         CourseHasParticipant courseHasParticipant = courseHasParticipantRepository
                 .findById(id)
                 .orElseThrow(() -> logicExceptionComponent.throwExceptionEntityNotFound("CourseHasParticipant", id));
-
-        courseHasParticipant.setIsApproved(dto.getIsApproved());
-        courseHasParticipant.setApprovalRate(dto.getApprovalRate());
-
-
+        Integer scholarshipCouponCounter = courseHasParticipant.getCourse().getScholarshipCouponCounter();
+        // esto verifica si se puede aprobar el curso
+        if (scholarshipCouponCounter == 0)
+            throw logicExceptionComponent.getExceptionSoldOut(courseHasParticipant.getCourse().getNameCourse());
+        // si la aprobación es ok, se settea los datos y de actualiza el contador ScholarshipCouponCounter en el curso
+        if (dto.getIsApproved()) {
+            courseHasParticipant.setIsApproved(dto.getIsApproved());
+            courseHasParticipant.setApprovalRate(dto.getApprovalRate());
+            courseHasParticipant.getCourse().setScholarshipCouponCounter(scholarshipCouponCounter - 1);
+        } else {
+            //si no, solo se actualiza en false el estatus de aprobación y el porcentaje a 0
+            courseHasParticipant.setIsApproved(dto.getIsApproved());
+            courseHasParticipant.setApprovalRate(0);
+        }
         CourseHasParticipantDTO courseHasParticipantDTOUpdated = courseHasParticipantMapper.toDto(courseHasParticipant, context);
-
-
+        return courseHasParticipantDTOUpdated;
     }
 }
