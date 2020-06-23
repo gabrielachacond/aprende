@@ -2,6 +2,7 @@ package ar.com.ada.aprende.service;
 
 import ar.com.ada.aprende.component.BusinessLogicExceptionComponent;
 import ar.com.ada.aprende.model.dto.CourseHasParticipantDTO;
+import ar.com.ada.aprende.model.dto.CourseHisFinishDTO;
 import ar.com.ada.aprende.model.dto.CourseScholarshipApprovalDTO;
 import ar.com.ada.aprende.model.dto.StudentCourseApplicationDTO;
 import ar.com.ada.aprende.model.entity.Course;
@@ -129,4 +130,20 @@ public class CourseHasParticipantServices {
         CourseHasParticipantDTO courseHasParticipantDTOUpdated = courseHasParticipantMapper.toDto(courseHasParticipant, context);
         return courseHasParticipantDTOUpdated;
     }
+
+
+    public CourseHasParticipantDTO courseHisFinish(CourseHisFinishDTO dto, Long courseId, Long participantId) {
+        CourseHasParticipantId id = new CourseHasParticipantId()
+                .setCourseId(courseId)
+                .setParticipantId(participantId);
+        CourseHasParticipant courseHasParticipant = courseHasParticipantRepository
+                .findById(id)
+                .orElseThrow(() -> logicExceptionComponent.throwExceptionEntityNotFound("CourseHasParticipant", id));
+        if (!courseHasParticipant.getCourseHasFinish() && dto.getCourseHasFinish())
+            courseHasParticipant.setCourseHasFinish(dto.getCourseHasFinish());
+        CourseHasParticipantDTO courseHasParticipantDTOUpdated = courseHasParticipantMapper.toDto(courseHasParticipant, context);
+        return courseHasParticipantDTOUpdated;
+    }
+
+
 }

@@ -9,37 +9,24 @@ import lombok.Setter;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
-
 @Getter
 @Setter
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({"isApproved", "approvalRate"})
-public class CourseScholarshipApprovalDTO implements Serializable {
+@JsonPropertyOrder({"courseHasFinish"})
+public class CourseHisFinishDTO implements Serializable {
 
-    @NotNull(message = "isApproved is required")
-    private Boolean isApproved;
-
-    @NotNull(message = "approvalRate is required")
-    private Integer approvalRate;
+    @NotNull(message = "course Has Finish is required")
+    private Boolean courseHasFinish;
 }
 
 /*
- Para el PM dio 200 ok
-
- http://localhost:8080/courses/1/partipants/1/approval
-
+http://localhost:8080/courses/1/partipants/1/finalize
 {
-    "isApproved": true,
-    "approvalRate": 75
-}
-
-{
- en la segunda prueba 200 ok
 
  "CourseHasFinish": false,
  "isScholaship": true,
  "isApproved": true,
     "approvalRate": 75
 }
-*/
+ */
