@@ -2,6 +2,7 @@ package ar.com.ada.aprende.service;
 
 import ar.com.ada.aprende.component.BusinessLogicExceptionComponent;
 import ar.com.ada.aprende.model.dto.CourseHasParticipantDTO;
+import ar.com.ada.aprende.model.dto.CourseScholarshipApprovalDTO;
 import ar.com.ada.aprende.model.dto.StudentCourseApplicationDTO;
 import ar.com.ada.aprende.model.entity.Course;
 import ar.com.ada.aprende.model.entity.CourseHasParticipant;
@@ -104,4 +105,28 @@ public class CourseHasParticipantServices {
 
     }
 
+    public CourseHasParticipantDTO courseScholarshipApproval(CourseScholarshipApprovalDTO dto, Long courseId, Long participantId) {
+        CourseHasParticipantId id = new CourseHasParticipantId()
+                .setCourseId(courseId)
+                .setParticipantId(participantId);
+        CourseHasParticipant courseHasParticipant = courseHasParticipantRepository
+                .findById(id)
+                .orElseThrow(() -> logicExceptionComponent.throwExceptionEntityNotFound("CourseHasParticipant", id));
+        Integer scholarshipCouponCounter = courseHasParticipant.getCourse().getScholarshipCouponCounter();
+        // esto verifica si se puede aprobar el curso
+        if (scholarshipCouponCounter == 0)
+            throw logicExceptionComponent.getExceptionSoldOut(courseHasParticipant.getCourse().getNameCourse());
+        // si la aprobación es ok, se settea los datos y de actualiza el contador ScholarshipCouponCounter en el curso
+        if (dto.getIsApproved()) {
+            courseHasParticipant.setIsApproved(dto.getIsApproved());
+            courseHasParticipant.setApprovalRate(dto.getApprovalRate());
+            courseHasParticipant.getCourse().setScholarshipCouponCounter(scholarshipCouponCounter - 1);
+        } else {
+            //si no, solo se actualiza en false el estatus de aprobación y el porcentaje a 0
+            courseHasParticipant.setIsApproved(dto.getIsApproved());
+            courseHasParticipant.setApprovalRate(0);
+        }
+        CourseHasParticipantDTO courseHasParticipantDTOUpdated = courseHasParticipantMapper.toDto(courseHasParticipant, context);
+        return courseHasParticipantDTOUpdated;
+    }
 }
