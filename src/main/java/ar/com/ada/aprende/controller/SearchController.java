@@ -47,8 +47,8 @@ public class SearchController {
         return ResponseEntity.ok(allCourseByCompanyAndCategory);
     }
 
-    // http://localhost:8080/search/courses/participants/status/true?page=0
-    @GetMapping({"/courses/participants/status/{courseHasFinish}", "/courses/participants/status/{courseHasFinish}/"})
+    // http://localhost:8080/search/courses/participant/in-progress/true?page=0
+    @GetMapping({"/courses/participants/in-progress/{courseHasFinish}", "/courses/participants/in-progress/{courseHasFinish}/"})
     public ResponseEntity getAllCourseByParticipantsProgressStatus(@RequestParam Optional<Integer> page, @PathVariable String courseHasFinish) {
 
         List<CourseDTO> allCourseByParticipantsProgressStatu = searchEngineServices

@@ -49,7 +49,7 @@ public class Course {
     @JoinColumn(name = "TypeModalityCourse_id")
     private TypeModalityCourse typeModalityCourse;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "Company_id")
     private Company company;
 
