@@ -56,4 +56,58 @@ public class Course {
     @OneToMany(mappedBy = "course")
     private Set<CourseHasParticipant> courseHasParticipants;
 
+    public Course setNameCourse(String nameCourse) {
+        this.nameCourse = nameCourse;
+        return this;
+    }
+
+    public Course setDescriptionCourse(String descriptionCourse) {
+        this.descriptionCourse = descriptionCourse;
+        return this;
+    }
+
+    public Course setCostCourse(Integer costCourse) {
+        this.costCourse = costCourse;
+        return this;
+    }
+
+    public Course setHoursCourse(Integer hoursCourse) {
+        this.hoursCourse = hoursCourse;
+        return this;
+    }
+
+    public Course setTotalPaticipants(Integer totalPaticipants) {
+        this.totalPaticipants = totalPaticipants;
+        return this;
+    }
+
+    public Course setPlacesToScholarship(Integer placesToScholarship) {
+        this.placesToScholarship = placesToScholarship;
+        return this;
+    }
+
+    public Course setPurchasedCouponCounter(Integer purchasedCouponCounter) {
+        this.purchasedCouponCounter = purchasedCouponCounter;
+        return this;
+    }
+
+    public Course setScholarshipCouponCounter(Integer scholarshipCouponCounter) {
+        this.scholarshipCouponCounter = scholarshipCouponCounter;
+        return this;
+    }
+
+    public Course setTypeCategoryCourse(TypeCategoryCourse typeCategoryCourse) {
+        this.typeCategoryCourse = typeCategoryCourse;
+        return this;
+    }
+
+    public Course setTypeModalityCourse(TypeModalityCourse typeModalityCourse) {
+        this.typeModalityCourse = typeModalityCourse;
+        return this;
+    }
+
+    public Course setCompany(Company company) {
+        this.company = company;
+        return this;
+    }
 }

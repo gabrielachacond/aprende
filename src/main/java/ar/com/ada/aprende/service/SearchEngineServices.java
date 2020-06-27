@@ -73,9 +73,9 @@ public class SearchEngineServices {
         return allByCourseAvailableListDTO;
     }
 
-    public List<CourseDTO> getAllCourseByParticipantsProgressStatus(Long courseHasFinish, Integer page) {
+    public List<CourseDTO> getAllCourseByParticipantsProgressStatus(String courseHasFinish, Integer page) {
         Page<Course> allCourseByParticipantsProgressStatusPage = courseRepository
-                .findAllCourseByParticipantsProgressStatus(courseHasFinish, PageRequest.of(page, 5, Sort.Direction.ASC, "id"));
+                .findAllCourseByParticipantsProgressStatus( Boolean.valueOf(courseHasFinish), PageRequest.of(page, 5, Sort.Direction.ASC, "id"));
 
         List<Course> allCourseByParticipantsProgressStatus = allCourseByParticipantsProgressStatusPage.getContent();
         List<CourseDTO> allCourseByParticipantsProgressStatusListDTO = courseMapper.toDto(allCourseByParticipantsProgressStatus, context);

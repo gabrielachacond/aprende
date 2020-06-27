@@ -18,7 +18,7 @@ public class SearchController {
     @Qualifier("searchEngineServices")
     private SearchEngineServices searchEngineServices;
 
-    // http://localhost:8080/search/courses/category/1?page=1
+    // http://localhost:8080/search/courses/category/1?page=0
     @GetMapping({"/courses/category/{categoryCourseId}", "/courses/category/{categoryCourseId}/"})
     public ResponseEntity getAllCourseByCategory(@RequestParam Optional<Integer> page, @PathVariable Long categoryCourseId) {
 
@@ -28,7 +28,7 @@ public class SearchController {
         return ResponseEntity.ok(allCourseByCategory);
     }
 
-    // http://localhost:8080/search/courses/company/1?page=1
+    // http://localhost:8080/search/courses/company/1?page=0
     @GetMapping({"/courses/company/{companyId}", "/courses/company/{companyId}/"})
     public ResponseEntity getAllCourseByCompany(@RequestParam Optional<Integer> page, @PathVariable Long companyId) {
 
@@ -37,22 +37,23 @@ public class SearchController {
         return ResponseEntity.ok(allCourseByCompany);
     }
 
-    // http://localhost:8080/search/courses/company/1/category/1?page=1
+    // http://localhost:8080/search/courses/company/1/category/1?page=0
     @GetMapping({"/courses/company/{companyId}/category/{categoryCourseId}", "/courses/company/{companyId}/category/{categoryCourseId}/"})
-    public ResponseEntity getAllCourseByCompanyAndCategory(@RequestParam Optional<Integer> page, @PathVariable Long companyId, Long categoryCourseId) {
+    public ResponseEntity getAllCourseByCompanyAndCategory(@RequestParam Optional<Integer> page, @PathVariable Long companyId, @PathVariable Long categoryCourseId) {
 
-        List<CourseDTO> allCourseByCompanyAndCategory = searchEngineServices.getAllCourseByCompanyAndCategory(companyId, categoryCourseId, page.orElse(0));
+        List<CourseDTO> allCourseByCompanyAndCategory = searchEngineServices
+                .getAllCourseByCompanyAndCategory(companyId, categoryCourseId, page.orElse(0));
 
         return ResponseEntity.ok(allCourseByCompanyAndCategory);
     }
 
-    // http://localhost:8080/search/courses/participants/status/1?page=1
-    @GetMapping({"/courses/participants/status/{courseHasFinish}/", "/courses/available/"})
-    public ResponseEntity getAllCourseByParticipantsProgressStatus(@RequestParam Optional<Integer> page, @PathVariable Long courseHasFinish) {
+    // http://localhost:8080/search/courses/participants/status/true?page=0
+    @GetMapping({"/courses/participants/status/{courseHasFinish}", "/courses/participants/status/{courseHasFinish}/"})
+    public ResponseEntity getAllCourseByParticipantsProgressStatus(@RequestParam Optional<Integer> page, @PathVariable String courseHasFinish) {
 
-        List<CourseDTO> allCourseByParticipantsProgressStatu = searchEngineServices.getAllCourseByParticipantsProgressStatus(courseHasFinish, page.orElse(0));
+        List<CourseDTO> allCourseByParticipantsProgressStatu = searchEngineServices
+                .getAllCourseByParticipantsProgressStatus(courseHasFinish, page.orElse(0));
 
         return ResponseEntity.ok(allCourseByParticipantsProgressStatu);
     }
-
 }
