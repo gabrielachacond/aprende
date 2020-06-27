@@ -37,4 +37,29 @@ public class Participant {
 
     @OneToOne(mappedBy = "participant")
     private SocioEconomyStudy socioEconomyStudy;
+
+    public Participant setName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public Participant setLastName(String lastName) {
+        this.lastName = lastName;
+        return this;
+    }
+
+    public Participant setGender(String gender) {
+        this.gender = gender;
+        return this;
+    }
+
+    public Participant setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
+        return this;
+    }
+
+    public Participant setAddress(String address) {
+        this.address = address;
+        return this;
+    }
 }

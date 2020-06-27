@@ -8,10 +8,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+
 @Component
+@Order(0)
 public class DataCleaner implements ApplicationRunner {
     private static final Logger LOGGER = LoggerFactory.getLogger(TypeCategoryCompanyLoaderData.class);
 
@@ -65,7 +68,6 @@ public class DataCleaner implements ApplicationRunner {
         if (appEnv.equals("dev") || appEnv.equals("qa")) {
             LOGGER.info("Data Cleaner initializer...\n");
 
-            // Para borrar los registros de las tablas y por eso las elimine de Categorydata
             courseHasParticipantRepository.deleteAll();
             courseHasParticipantRepository.resetAutoincrementValue();
             socioEconomyStudyRepository.deleteAll();
