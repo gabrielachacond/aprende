@@ -9,6 +9,7 @@ import ar.com.ada.aprende.service.CourseServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,6 +32,7 @@ public class CompanyController {
     @Qualifier("courseServices")
     private CourseServices courseServices;
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping({"/companies", "/companies/"}) // localhost:8080/Companies y localhost:8080/companies/
     public ResponseEntity addNewCompany(@Valid @RequestBody CompanyDTO companyDTO) throws URISyntaxException {
         CompanyDTO companyDTOSaved = companyServices.save(companyDTO);
@@ -41,6 +43,7 @@ public class CompanyController {
     }
 
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping({"/representatives", "/representatives/"})
     // localhost:8080/companies/representatives y localhost:8080/companies/representatives/
     public ResponseEntity addNewRepresentative(@Valid @RequestBody CompanyRepresentativeDTO companyRepresentativeDTO) throws URISyntaxException {
@@ -51,6 +54,7 @@ public class CompanyController {
 
     }
 
+    @PreAuthorize("hasRole('REPRESENTATIVE')")
     @PostMapping({"/courses", "/courses/"}) // localhost:8080/courses/
     public ResponseEntity addNewCourse(@Valid @RequestBody CourseDTO courseDTO) throws URISyntaxException {
         CourseDTO courseDTOSaved = courseServices.save(courseDTO);

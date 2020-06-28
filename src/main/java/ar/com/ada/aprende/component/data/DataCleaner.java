@@ -1,6 +1,8 @@
 package ar.com.ada.aprende.component.data;
 
 import ar.com.ada.aprende.model.repository.*;
+import ar.com.ada.aprende.model.repository.security.AuthorityRepository;
+import ar.com.ada.aprende.model.repository.security.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +63,14 @@ public class DataCleaner implements ApplicationRunner {
     @Qualifier("participantRepository")
     private ParticipantRepository participantRepository;
 
+    @Autowired
+    @Qualifier("userRepository")
+    private UserRepository userRepository;
+
+    @Autowired
+    @Qualifier("authorityRepository")
+    private AuthorityRepository authorityRepository;
+
 
     @Override
     @Transactional
@@ -68,6 +78,11 @@ public class DataCleaner implements ApplicationRunner {
         if (appEnv.equals("dev") || appEnv.equals("qa")) {
             LOGGER.info("Data Cleaner initializer...\n");
 
+            userRepository.deletaAllUserHasAuthority();
+            userRepository.deleteAll();
+            userRepository.resetAutoincrementValue();
+            authorityRepository.deleteAll();
+            authorityRepository.resetAutoincrementValue();
             courseHasParticipantRepository.deleteAll();
             courseHasParticipantRepository.resetAutoincrementValue();
             socioEconomyStudyRepository.deleteAll();
