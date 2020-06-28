@@ -7,6 +7,7 @@ import ar.com.ada.aprende.service.SocioEconomyStudyServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +29,7 @@ public class ParticipantController {
     @Qualifier("socioEconomyStudyServices")
     private SocioEconomyStudyServices socioEconomyStudyServices;
 
+
     @PostMapping({"", "/"}) // localhost:8080/participants y localhost:8080/participants/
     public ResponseEntity addNewParticipant(@Valid @RequestBody ParticipantDTO participantDTO) throws URISyntaxException {
         ParticipantDTO participantDTOSaved = participantServices.save(participantDTO);
@@ -36,6 +38,7 @@ public class ParticipantController {
                 .body(participantDTOSaved);
     }
 
+    @PreAuthorize("hasRole('PARTICIPANT')")
     @PostMapping({"/socioEconomyStudies", "/socioEconomyStudies/"}) // localhost:8080/socioEconomyStudies y localhost:8080/socioEconomyStudies/
     public ResponseEntity addNewSocioEconomyStudy(@Valid @RequestBody SocioEconomyStudyDTO socioEconomyStudyDTO) throws URISyntaxException {
         SocioEconomyStudyDTO socioEconomyStudyDTOSaved = socioEconomyStudyServices.save(socioEconomyStudyDTO);
